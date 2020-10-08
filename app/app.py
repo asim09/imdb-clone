@@ -10,6 +10,10 @@ import ast,datetime
 
 app = Flask(__name__)
 
+@app.route('/',methods=['GET'])
+def home():
+    return 'Greeetings Asim'
+
 # @app.route('/api/search-movie-by-title',methods=['GET'])
 # def search_movie_by_title():
 #     '''
