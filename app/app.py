@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/',methods=['GET'])
 def home():
-    return 'Greeetings'
+    return 'IMDB-APIs For Client: FYND'
 
 @app.route('/api/search-movie-by-title',methods=['GET'])
 def search_movie_by_title():
