@@ -1,4 +1,4 @@
-HOST           = "52.66.211.206"
+HOST           = "127.0.0.1"
 USER           = "myuser"
 PASSWORD       = "root@1234"
 DATABASE       = "movie_arena"
