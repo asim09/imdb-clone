@@ -33,11 +33,13 @@ def search_movie_by_title():
                 for movie in movies:
                     temp = []
                     sql = "select g.genre from movies_genre mg left join genres g on mg.genre = g.id where mg.movie_id = %s and g.soft_delete = 0 and mg.soft_delete = 0"
+                    print(sql)
                     cursor.execute(sql,(movie['id'],))
                     genre = cursor.fetchall()
+                    print(genre)
                     genre = list(set([x['genre'] for x in genre]))
                     movie['genre'] = genre
-                    print(genre)
+                    # print(genre)
                     movie_list.append(movie)
                 return jsonify({'movie_data':movie_list,'status':True})
         return jsonify({'message':'You are not authorized to access this endpoint!'})
