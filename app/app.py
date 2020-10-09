@@ -27,10 +27,17 @@ def search_movie_by_title():
             if 'title' in data.keys():
                 conn = db_connection()
                 cursor = conn.cursor()
-                sql = "select title,director,imdb_score,popularity from movies where title = %s"
+                sql = "select id, title,director,imdb_score,popularity from movies where title = %s"
                 cursor.execute(sql,(data['title'],))
                 movies = cursor.fetchall()
                 for movie in movies:
+                    temp = []
+                    sql = "select g.genre from movies_genre mg left join genres g on mg.genre = g.id where mg.movie_id = %s and g.soft_delete = 0 and mg.soft_delete = 0"
+                    cursor.execute(sql,(movie['id'],))
+                    genre = cursor.fetchall()
+                    genre = list(set([x['genre'] for x in genre]))
+                    movie['genre'] = genre
+                    print(genre)
                     movie_list.append(movie)
                 return jsonify({'movie_data':movie_list,'status':True})
         return jsonify({'message':'You are not authorized to access this endpoint!'})
