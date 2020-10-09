@@ -34,7 +34,8 @@ def search_movie_by_title():
                     temp = []
                     sql = "select g.genre from movies_genre mg left join genres g on mg.genre = g.id where mg.movie_id = %s and g.soft_delete = 0 and mg.soft_delete = 0"
                     print(sql)
-                    cursor.execute(sql,(movie['id'],))
+                    a = cursor.execute(sql,(movie['id'],))
+                    print(a)
                     genre = cursor.fetchall()
                     print(genre)
                     genre = list(set([x['genre'] for x in genre]))
